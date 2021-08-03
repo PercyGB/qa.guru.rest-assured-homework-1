@@ -6,14 +6,25 @@ repositories {
     mavenCentral()
 }
 
-def junitVersion = "5.7.2"
+ext {
+    restAssuredVersion = "4.4.0"
+    assertJVersion = "3.19.0"
+    fakerVersion = "1.0.1"
+    junitVersion = "5.7.1"
+    jacksonVersion = "2.12.4"
+}
 
 dependencies {
     testImplementation(
-            "io.rest-assured:rest-assured:4.3.1",
-            "org.assertj:assertj-core:3.19.0",
-            "org.junit.jupiter:junit-jupiter-api:$junitVersion")
+            "io.rest-assured:rest-assured:${restAssuredVersion}",
+            "org.assertj:assertj-core:${assertJVersion}",
+            "org.junit.jupiter:junit-jupiter-api:${junitVersion}",
+            "com.github.javafaker:javafaker:${fakerVersion}",
+            "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    )
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    testCompileOnly 'org.projectlombok:lombok:1.18.8'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.8'
 }
 
 tasks.withType(JavaCompile) {
